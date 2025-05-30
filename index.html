@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>加载 PDF...</title>
-  <!-- 立刻跳转到 viewer.html 并带上 file 参数 -->
-  <meta http-equiv="refresh" content="0; url=pdfjs/web/viewer.html?file=../thesis.pdf" />
+  <title>thesis</title>
+  <style>
+    html, body { margin:0; padding:0; height:100%; }
+    #pdf-viewer { width:100%; height:100vh; border:none; }
+  </style>
 </head>
 <body>
-  如果浏览器不自动跳转，请 <a href="pdfjs/web/viewer.html?file=../thesis.pdf">点此手动打开</a>。
+  <iframe
+    id="pdf-viewer"
+    src="pdfjs/web/viewer.html?file=/KG2QA/thesis.pdf"
+    allowfullscreen
+  ></iframe>
 </body>
 </html>
