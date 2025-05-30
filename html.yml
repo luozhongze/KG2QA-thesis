@@ -1,22 +1,24 @@
-# 路径：.github/workflows/convert-root-pdfs.yml
-name: Convert Root PDFs to HTML & Deploy
+# 路径：.github/workflows/html.yml
+
+name: Convert PDF → HTML & Deploy to GitHub Pages
 
 on:
   push:
-    # 只在根目录下的 PDF 发生变动时触发
+    branches:
+      - main
     paths:
-      - '*./KG2QA.pdf'
+      - 'KG2QA.pdf'                          # 指定要监控的 PDF 文件
+      - '.github/workflows/html.yml'         # workflow 自身改动也要触发
 
 jobs:
-  convert-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 签出整个仓库
+      # 1. 签出仓库代码（带完整历史）
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: true
           fetch-depth: 0
 
       # 2. 安装 pdf2htmlEX
@@ -25,33 +27,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pdf2htmlEX
 
-      # 3. 将根目录下的所有 PDF 转成 docs/*.html
-      - name: Convert PDFs in root to HTML
+      # 3. 转换 KG2QA.pdf → docs/KG2QA.html
+      - name: Convert KG2QA.pdf to HTML
         run: |
           mkdir -p docs
-          for pdf in ./*.pdf; do
-            base=$(basename "$pdf" .pdf)
-            # 输出到 docs/<basename>.html
-            pdf2htmlEX --dest-dir docs --dest-file "${base}.html" "$pdf"
-          done
+          pdf2htmlEX \
+            --dest-dir docs \
+            --dest-file KG2QA.html \
+            KG2QA.pdf
 
-      # 4. 提交并推送生成的 HTML（可选：如果你用 docs 目录作为 Pages 源直接在 main 分支）
-      - name: Commit generated HTML
+      # 4. 提交并推送生成的 HTML 到 docs/（用于 Pages）
+      - name: Commit HTML to docs/
         uses: EndBug/add-and-commit@v9
         with:
           author_name: github-actions
           author_email: github-actions@github.com
-          message: "chore: auto-convert root PDFs to HTML"
+          message: "chore: convert KG2QA.pdf to HTML"
           push: true
-
-      # 5. （如果你用 gh-pages 分支）部署到 GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: main@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # 如果你选 gh-pages 分支做 Pages
-          publish_branch: gh-pages
-          # 如果你选 docs 目录直接做 Pages，则改为：
-          # publish_branch: main
-          # publish_dir: docs
-          publish_dir: docs
