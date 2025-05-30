@@ -1,0 +1,57 @@
+# 路径：.github/workflows/convert-root-pdfs.yml
+name: Convert Root PDFs to HTML & Deploy
+
+on:
+  push:
+    # 只在根目录下的 PDF 发生变动时触发
+    paths:
+      - '*./KG2QA.pdf'
+
+jobs:
+  convert-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 签出整个仓库
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      # 2. 安装 pdf2htmlEX
+      - name: Install pdf2htmlEX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pdf2htmlEX
+
+      # 3. 将根目录下的所有 PDF 转成 docs/*.html
+      - name: Convert PDFs in root to HTML
+        run: |
+          mkdir -p docs
+          for pdf in ./*.pdf; do
+            base=$(basename "$pdf" .pdf)
+            # 输出到 docs/<basename>.html
+            pdf2htmlEX --dest-dir docs --dest-file "${base}.html" "$pdf"
+          done
+
+      # 4. 提交并推送生成的 HTML（可选：如果你用 docs 目录作为 Pages 源直接在 main 分支）
+      - name: Commit generated HTML
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions
+          author_email: github-actions@github.com
+          message: "chore: auto-convert root PDFs to HTML"
+          push: true
+
+      # 5. （如果你用 gh-pages 分支）部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 如果你选 gh-pages 分支做 Pages
+          publish_branch: gh-pages
+          # 如果你选 docs 目录直接做 Pages，则改为：
+          # publish_branch: main
+          # publish_dir: docs
+          publish_dir: docs
