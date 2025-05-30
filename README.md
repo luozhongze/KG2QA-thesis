@@ -2,10 +2,10 @@
 
 <div align="center">
 
-[Zhongze Luo](https://luozhongze.github.io)*  <br>
-🌲Northeast Forestry University, Harbin, China  <br>
+[Zhongze Luo](https://luozhongze.github.io)* <br>
+🌲Northeast Forestry University, Harbin, China <br>
 Email: luozhongze0928@foxmail.com <br>
-This is the undergraduate thesis of Zhongze Luo, advised by Jian Wang
+This is the undergraduate thesis of Zhongze Luo, advised by [Jian Wang](https://ccec.nefu.edu.cn/info/1043/1843.htm)
 
 </div>
 
