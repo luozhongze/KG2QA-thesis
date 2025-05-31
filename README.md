@@ -1,4 +1,4 @@
-# KG2QA：Knowledge Graph-Powered Question Answering for Communication Standards with LLMs (in Chinese)
+# KG2QA：Knowledge Graph-Powered Question Answering for Communication Standards with LLMs
 
 <div align="center">
 
