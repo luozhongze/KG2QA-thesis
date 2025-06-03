@@ -1,4 +1,4 @@
-# KG2QA：Knowledge Graph-Powered Question Answering for Communication Standards with LLMs
+# KG2QA: Knowledge Graph-enhanced Retrieval-Augmented Generation for Communication Standards Question Answering
 
 <div align="center">
   
