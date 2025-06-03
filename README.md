@@ -2,11 +2,11 @@
 
 <div align="center">
   
-*This is the undergraduate thesis of Zhongze Luo, supervised by [Jian Wang](https://ccec.nefu.edu.cn/info/1043/1843.htm)* <br>
+*This is the undergraduate thesis of [Zhongze Luo](https://luozhongze.github.io), supervised by [Jian Wang](https://ccec.nefu.edu.cn/info/1043/1843.htm)* <br>
 *You can view the thesis by this url* <br>
 *[http://luozhongze.github.io/KG2QA/](http://luozhongze.github.io/KG2QA/)* <br>
 
-[Zhongze Luo](https://luozhongze.github.io) <br>
+
 🌲Northeast Forestry University, Harbin, China <br>
 Email: luozhongze0928@foxmail.com <br>
 
