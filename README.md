@@ -1,7 +1,9 @@
 # KG2QA：Knowledge Graph-Powered Question Answering for Communication Standards with LLMs
 
 *This is the undergraduate thesis of Zhongze Luo, supervised by [Jian Wang](https://ccec.nefu.edu.cn/info/1043/1843.htm)*
+
 *You can view the thesis by this url*
+
 *[http://luozhongze.github.io/KG2QA/](http://luozhongze.github.io/KG2QA/)*
 
 <div align="center">
